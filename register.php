@@ -8,7 +8,7 @@
 </head>
 
 <style>
-body{background-color: #d3d3d3;}
+body{background-color: #bdbdbd;}
 form{background: #fff;max-width:500px;}
 .alert{position: absolute; margin: 10px;}
 input{outline:none;box-shadow: 0 0 0 0;}
@@ -17,16 +17,21 @@ input{outline:none;box-shadow: 0 0 0 0;}
 <body>
     <div class="container-sm d-flex justify-content-center">
     <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="fw-bold">SIS Login</h3>
+        <h3 class="fw-bold">Sign Up</h3>
     <div class="mb-3">
+        <label for="nome" class="form-label">Name</label>
+        <input type="text" class="form-control" name="nome" placeholder="Your Name">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" name="email" placeholder="name@example.com">
         <label for="pass" class="form-label">Password</label>
         <input type="password" class="form-control" name="senha" placeholder="Password">
-        <button class="btn btn-primary mt-3" type='submit'>Send</button></div>
-        <a href="register.php">Register here</a>
-    </form>   
-    
+        <button class="btn btn-primary mt-3" type='submit'>Register</button>
+        
+    </div><a href="index.php">Back to Login</a>
+    </form>    
+    </div>
+
+
     <?php
 session_start();
 
@@ -40,36 +45,32 @@ if (isset($_SESSION['email'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try{
+        $nome = $_POST['nome'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        $sql = "select nome, email from usuario where email = :email and senha = :senha";
+        $sql = "insert into usuario (nome, email, senha) values (:nome, :email, :senha)";
 
         // $rs = $cx->query($sql);
         // $row = $rs->fetch(PDO::FETCH_ASSOC);
         $stmt = $cx->prepare($sql);
+        $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':senha', $senha);
         $stmt->execute();
 
-        if ($stmt->rowCount() > 0){
-            $row = $stmt->fetch();
-            $_SESSION['email'] = $row['nome'];
-
-            header("Location: dashboard.php");
+        if ($stmt){
+            print '<div class=alert alert-success" role="alert">Usuário cadastrado com sucesso</div>';
             exit();
         } else {
-            print '<div class="alert alert-danger" role="alert">Login inválido. Tente novamente</div>';
+            print '<div class=alert alert-danger" role="alert">Usuário não cadastrado.</div>';
             exit();
         }
     } catch (PDOException $e){
         echo "Erro de conexão: " . $e->getMessage();
     }    
 }
-?> 
-
-    </div>
-
+?>
 </body>
 </html>
 

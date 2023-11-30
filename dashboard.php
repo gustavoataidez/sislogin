@@ -17,12 +17,12 @@ $nome = $_SESSION['email'];
 $nome = mb_convert_case($nome, MB_CASE_TITLE, "UTF-8");
     ?>
 <body>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand">SIS Login</a>
-    <a class="btn btn-outline-danger" href="logout.php">Logout</a>
+    <a class="navbar-brand fw-bold">SIS Login</a>
+    <a class="btn btn-danger" href="logout.php">Logout</a>
   </div>
 </nav>
-<h3 class=" pt-2">Seja bem-vindo(a) <?php echo $nome;?>.</h3>
+<h3 class=" p-5">Seja bem-vindo(a) <?php echo $nome;?>.</h3>
 </body>
 </html>
