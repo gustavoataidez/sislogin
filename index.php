@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIS Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <style>
@@ -17,11 +18,11 @@ input{outline:none;box-shadow: 0 0 0 0;}
 <body>
     <div class="container-sm d-flex justify-content-center">
     <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="fw-bold">SIS Login</h3>
+        <h3 class="fw-bold"><span class="material-symbols-outlined">login</span> SIS Login</h3>
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" name="email" placeholder="name@example.com">
-        <label for="pass" class="form-label">Password</label>
+        <label for="pass" class="form-label"> Password</label>
         <input type="password" class="form-control" name="senha" placeholder="Password">
         <button class="btn btn-primary mt-3" type='submit'>Send</button></div>
         <a href="register.php">Register here</a>
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($stmt->rowCount() > 0){
             $row = $stmt->fetch();
+
             $_SESSION['email'] = $row['nome'];
 
             header("Location: dashboard.php");

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIS Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <style>
@@ -17,7 +18,9 @@ input{outline:none;box-shadow: 0 0 0 0;}
 <body>
     <div class="container-sm d-flex justify-content-center">
     <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="fw-bold">Sign Up</h3>
+        <h3 class="fw-bold"><span class="material-symbols-outlined">
+how_to_reg
+</span> Sign Up</h3>
     <div class="mb-3">
         <label for="nome" class="form-label">Name</label>
         <input type="text" class="form-control" name="nome" placeholder="Your Name">
