@@ -29,8 +29,8 @@ how_to_reg
         <label for="pass" class="form-label">Password</label>
         <input type="password" class="form-control" name="senha" placeholder="Password">
         <button class="btn btn-primary mt-3" type='submit'>Register</button>
-        
-    </div><a href="index.php">Back to Login</a>
+    </div>
+    <a class="btn btn-outline-secondary" href="index.php">Back to Login</a>
     </form>    
     </div>
 

@@ -20,12 +20,12 @@ input{outline:none;box-shadow: 0 0 0 0;}
     <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
         <h3 class="fw-bold"><span class="material-symbols-outlined">login</span> SIS Login</h3>
     <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" name="email" placeholder="name@example.com">
-        <label for="pass" class="form-label"> Password</label>
-        <input type="password" class="form-control" name="senha" placeholder="Password">
-        <button class="btn btn-primary mt-3" type='submit'>Send</button></div>
-        <a href="register.php">Register here</a>
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" placeholder="nome@examplo.com">
+        <label for="pass" class="form-label">Senha</label>
+        <input type="password" class="form-control" name="senha" placeholder="senha"></div>
+        <button class="btn btn-primary" type='submit'>Entrar</button>
+        <a class="btn btn-outline-secondary" href="register.php">Registre-se aqui</a>
     </form>   
     
     <?php
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        $sql = "select nome, email from usuario where email = :email and senha = :senha";
+        $sql = "SELECT nome, email from usuario where email = :email and senha = :senha";
 
         // $rs = $cx->query($sql);
         // $row = $rs->fetch(PDO::FETCH_ASSOC);
@@ -56,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->rowCount() > 0){
             $row = $stmt->fetch();
 
-            $_SESSION['email'] = $row['nome'];
+            $_SESSION['email'] = $email;
+            $_SESSION['nome'] = $row['nome'];
+            $_SESSION['senha'] = $senha;
 
             header("Location: dashboard.php");
             exit();
@@ -70,8 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?> 
 
-    </div>
-
+</div>
 </body>
 </html>
-

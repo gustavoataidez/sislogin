@@ -13,16 +13,48 @@ if (!isset($_SESSION['email'])) {
     header("Location: index.php");
     exit();
 }
-$nome = $_SESSION['email'];
+$nome = $_SESSION['nome'];
+$email = $_SESSION['email'];
+$senha = $_SESSION['senha'];
 $nome = mb_convert_case($nome, MB_CASE_TITLE, "UTF-8");
     ?>
+
+
 <body>
     <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold">SIS Login</a>
-    <a class="btn btn-danger" href="logout.php">Logout</a>
+    <div>
+    <a class="fw-bold" href="edit.php">Edite sua senha</a>
+    <a class="btn btn-danger" href="logout.php">Sair</a>
+    </div>
   </div>
 </nav>
-<h3 class=" p-5">Seja bem-vindo(a) <?php echo $nome;?>.</h3>
+<div class="p-5">
+<h3>Seja bem-vindo(a) <?php echo $nome;?>. O conselho do dia é:</h3>
+
+<?php
+$apiUrl = 'https://api.adviceslip.com/advice';
+
+$ch = curl_init($apiUrl);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$data = curl_exec($ch);
+
+if(curl_errno($ch)){
+  echo 'Erro na  requisição cURL: ' . curl_error($ch);
+} else {
+  $result = json_decode($data, true);
+  if($result !== null){
+    echo $result['slip']['advice'];
+  } else {
+    echo "Falha ao decodificar os dados JSON";
+  }
+}
+curl_close($ch);
+?></h4>
+
+</div>
 </body>
 </html>
