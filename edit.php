@@ -20,6 +20,8 @@ input{outline:none;box-shadow: 0 0 0 0;}
     <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
         <h3 class="fw-bold">Edite sua senha</h3>
     <div class="mb-3">
+        <label for="pass" class="form-label">Sua antiga senha</label>
+        <input type="password" class="form-control" name="senha-antiga" placeholder="senha">
         <label for="pass" class="form-label">Sua nova senha</label>
         <input type="password" class="form-control" name="senha" placeholder="senha">
         <button class="btn btn-primary mt-3" type='submit'>Enviar</button></div>
@@ -40,6 +42,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     try{
         $email = $_SESSION['email'];
         $senha = $_POST['senha'];
+        //$senhaAntiga = $_POST['senha-antiga'];
+
+        //$senhaBD = "SELECT senha FROM usuario WHERE email = :email";
 
         $sql = "UPDATE usuario SET senha = :senha WHERE email = :email";
 

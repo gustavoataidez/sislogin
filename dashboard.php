@@ -34,25 +34,46 @@ $nome = mb_convert_case($nome, MB_CASE_TITLE, "UTF-8");
 <h3>Seja bem-vindo(a) <?php echo $nome;?>. O conselho do dia é:</h3>
 
 <?php
-$apiUrl = 'https://api.adviceslip.com/advice';
+$urlApi = 'https://api.adviceslip.com/advice';
 
-$ch = curl_init($apiUrl);
+$ch = curl_init($urlApi);
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $data = curl_exec($ch);
 
 if(curl_errno($ch)){
-  echo 'Erro na  requisição cURL: ' . curl_error($ch);
+  echo "Erro na requisição na cURL/: " . curl_error($ch);
 } else {
-  $result = json_decode($data, true);
-  if($result !== null){
+  $result = json_decode($data,true);
+  if($result !== NULL){
     echo $result['slip']['advice'];
   } else {
-    echo "Falha ao decodificar os dados JSON";
+    echo 'Falha ao decodificar os dados JSON';
   }
 }
-curl_close($ch);
+
+CURL_CLOSE($ch)
+
+// $apiUrl = 'https://api.adviceslip.com/advice';
+
+// $ch = curl_init($apiUrl);
+
+// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// $data = curl_exec($ch);
+
+// if(curl_errno($ch)){
+//   echo 'Erro na  requisição cURL: ' . curl_error($ch);
+// } else {
+//   $result = json_decode($data, true);
+//   if($result !== null){
+//     echo $result['slip']['advice'];
+//   } else {
+//     echo "Falha ao decodificar os dados JSON";
+//   }
+// }
+// curl_close($ch);
 ?></h4>
 
 </div>
