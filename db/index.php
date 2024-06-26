@@ -12,7 +12,7 @@ $cx = new PDO('pgsql:host=localhost;dbname=postgres', 'postgres', '123456');
 $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (Exception $e){
-	echo "Servidor indisponível.";
+	//echo "Servidor indisponível.";
 	exit;
 	//echo $e->getMessage();
 }

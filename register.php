@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,30 +19,156 @@ body{background-color: #bdbdbd;}
 form{background: #fff;max-width:500px;}
 .alert{position: absolute; margin: 10px;}
 input{outline:none;box-shadow: 0 0 0 0;}
+
+.form_main {
+  width:80%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px 30px 30px 30px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
+}
+
+.heading {
+  font-size: 2.5em;
+  color: #2e2e2e;
+  font-weight: 700;
+  margin: 15px 0 30px 0;
+}
+
+.inputContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+}
+
+.inputField {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgb(173, 173, 173);
+  border-radius: 30px;
+  margin: 10px 0;
+  color: black;
+  font-size: .8em;
+  font-weight: 500;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+
+.inputField:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(199, 114, 255);
+}
+
+.inputField::placeholder {
+  color: rgb(80, 80, 80);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+#button {
+  position: relative;
+  width: 100%;
+  border: 2px solid #1c5560;
+  background-color: #1c5560;
+  height: 40px;
+  color: white;
+  font-size: .8em;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  margin: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+#button::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.253);
+  height: 100%;
+  width: 150px;
+  top: 0;
+  left: -200px;
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+  filter: blur(10px);
+  transition-duration: .5s;
+}
+
+#button:hover::after {
+  transform: translateX(600px);
+  transition-duration: .5s;
+}
+
+.signupContainer {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.signupContainer p {
+  font-size: .9em;
+  font-weight: 500;
+  color: black;
+}
+
+.signupContainer a {
+  font-size: .8em;
+  font-weight: 500;
+  background-color: #2e2e2e;
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+
+
 </style>
 
 <body>
     <div class="container-sm d-flex justify-content-center">
-    <form method="post" class="p-3 mt-5 rounded-3 shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="fw-bold"><span class="material-symbols-outlined">
-how_to_reg
-</span> Sign Up</h3>
-    <div class="mb-3">
-        <label for="nome" class="form-label">Name</label>
-        <input type="text" class="form-control" name="nome" placeholder="Your Name">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" name="email" placeholder="name@example.com">
-        <label for="pass" class="form-label">Password</label>
-        <input type="password" class="form-control" name="senha" placeholder="Password">
-        <button class="btn btn-primary mt-3" type='submit'>Register</button>
+
+    <form method="post" class="form_main mt-5">
+    <p class="heading">Registrar</p>
+<div class="inputContainer">
+    <input placeholder="Nome" id="nome" name="nome" class="inputField" type="text">
+</div>
+<div class="inputContainer">
+    <input placeholder="name@example.com" id="email" name="email" class="inputField" type="email">
+</div>
+<div class="inputContainer">
+    <input placeholder="Senha" id="password" name="senha" class="inputField" type="password">
+</div>
+              
+           
+<button type='submit' id="button">Registrar</button>
+    <div class="signupContainer">
+        <p>Já tem uma conta?</p>
+        <a href="index.php">Fazer login</a>
     </div>
-    <a class="btn btn-outline-secondary" href="index.php">Back to Login</a>
-    </form>    
+</form>
     </div>
 
 
     <?php
-session_start();
 
 include "db/index.php";
 
